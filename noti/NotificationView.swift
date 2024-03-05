@@ -37,7 +37,8 @@ struct NotificationView:View {
         NotificationModel(type: .follow, username: "Daniel King", message: "Started Following You", time: "1h", userprofile: "image-6", postImage: "", comment: "")
     ]
 
-    
+    @Binding var noti:Bool
+    @Binding var msg:Bool
     @State var data: [NotificationModel] = []
     
     @State var selected:NotificatcionType = .all
@@ -138,7 +139,15 @@ struct NotificationView:View {
                     
                  
                     
-                }
+                }.gesture(DragGesture().onEnded({ val in
+                    if val.translation.width <= UIScreen.main.bounds.width  / 2.2 {
+                        withAnimation(.spring) {
+                            noti = false
+                            msg = true
+                        }
+                        
+                    }
+                }))
             }
         }.onAppear {
             filterNotification(notificationType: .all)

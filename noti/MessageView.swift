@@ -45,7 +45,8 @@ struct MessageView:View {
         case unread
     }
     
-   
+    @Binding var noti:Bool
+    @Binding var msg:Bool
 
     
     @State var selected:msgType = .all
@@ -119,7 +120,15 @@ struct MessageView:View {
                                 
                                 
                                 
-                            }
+                            }.gesture(DragGesture().onEnded({ val in
+                                if val.translation.width >= UIScreen.main.bounds.width  / 4 {
+                                    withAnimation(.spring) {
+                                        noti = true
+                                        msg = false
+                                    }
+                                    
+                                }
+                            }))
                         }
                         
                     

@@ -51,11 +51,11 @@ struct ContentView: View {
                  
              }
              ZStack{
-                 NotificationView().background(.color).ignoresSafeArea().zIndex(noti ? 1 : 0)
+                 NotificationView(noti: $noti, msg: $msg).background(.color).ignoresSafeArea().zIndex(noti ? 1 : 0)
          
                      
                    
-                         MessageView().background(.color).ignoresSafeArea().zIndex(msg ? 1 : 0)
+                         MessageView(noti:$noti,msg:$msg).background(.color).ignoresSafeArea().zIndex(msg ? 1 : 0)
                      
                      
                      
